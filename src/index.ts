@@ -8,7 +8,7 @@ app.use(express.json())
 app.post("/identify", async (req, res) => {
   const { email, phoneNumber } = req.body
 
-  // Step 1: Find all matching contacts
+
   const matchedContacts = await prisma.contact.findMany({
     where: {
       OR: [
@@ -19,7 +19,7 @@ app.post("/identify", async (req, res) => {
     orderBy: { createdAt: "asc" }
   })
 
-  // CASE 1: No contacts found → create primary
+
   if (matchedContacts.length === 0) {
     const newContact = await prisma.contact.create({
       data: {
@@ -39,7 +39,7 @@ app.post("/identify", async (req, res) => {
     })
   }
 
-  // Step 2: Get all related contacts (including linked ones)
+
   const relatedContacts = await prisma.contact.findMany({
     where: {
       OR: [
@@ -50,14 +50,14 @@ app.post("/identify", async (req, res) => {
     orderBy: { createdAt: "asc" }
   })
 
-  // Step 3: Find the true primary (oldest primary)
+
   let primary = relatedContacts.find(c => c.linkPrecedence === "primary")
 
   if (!primary) {
     primary = relatedContacts[0]
   }
 
-  // Step 4: Merge multiple primaries if needed
+
   const otherPrimaries = relatedContacts.filter(
     c => c.linkPrecedence === "primary" && c.id !== primary!.id
   )
@@ -72,7 +72,7 @@ app.post("/identify", async (req, res) => {
     })
   }
 
-  // Step 5: Check if new info needs new secondary
+
   const allContacts = await prisma.contact.findMany({
     where: {
       OR: [
@@ -96,7 +96,7 @@ app.post("/identify", async (req, res) => {
     })
   }
 
-  // Step 6: Fetch final full group
+
   const finalContacts = await prisma.contact.findMany({
     where: {
       OR: [

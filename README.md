@@ -105,7 +105,7 @@ At least one of the fields must be provided.
 { "email": "a@gmail.com", "phoneNumber": "8888" }
 ```
 
-![Merge Test](screenshots/test-merge.png)
+![Merge Test](screenshots/test-edge.png)
 
 ---
 

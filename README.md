@@ -92,21 +92,12 @@ At least one of the fields must be provided.
 { "email": "doc@gmail.com", "phoneNumber": "1111" }
 ```
 
-![Primary Test](screenshots/test-primary.png)
+![Primary Test](screenshots/test-secondary.png)
 
 ---
 
-### 2️⃣ Secondary Contact Creation
 
-```json
-{ "email": "new@gmail.com", "phoneNumber": "1111" }
-```
-
-![Secondary Test](screenshots/test-secondary.png)
-
----
-
-### 3️⃣ Merge Two Primaries
+### 2️⃣ Merge Two Primaries
 
 ```json
 { "email": "a@gmail.com", "phoneNumber": "9999" }
@@ -118,11 +109,6 @@ At least one of the fields must be provided.
 
 ---
 
-### 4️⃣ Additional Edge Case Test
-
-![Edge Test](screenshots/test-edge.png)
-
----
 
 ## Running Locally
 
